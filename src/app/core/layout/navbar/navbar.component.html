@@ -1,0 +1,39 @@
+<nav class="w-full bg-white border-b border-zinc-200">
+  <div class="max-w-7xl mx-auto px-6 h-16 flex items-center">
+
+    <!-- Logo -->
+    <a routerLink="/" class="flex items-center mr-10">
+      <img 
+        src="assets/images/logo/logo_dark.svg"
+        alt="Logo"
+        class="h-8 w-auto"
+      >
+    </a>
+
+    <div class="flex items-center gap-8 text-sm font-medium">
+
+      <app-tooltip
+        *ngFor="let item of menuItems"
+        [text]="item.label"
+      >
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="text-black"
+          class="flex items-center gap-2 text-zinc-600 hover:text-black transition-colors duration-200"
+        >
+
+          <img
+            [src]="item.icon"
+            [alt]="item.label"
+            class="w-5 h-5"
+          />
+
+          {{ item.label }}
+
+        </a>
+      </app-tooltip>
+
+    </div>
+
+  </div>
+</nav>
