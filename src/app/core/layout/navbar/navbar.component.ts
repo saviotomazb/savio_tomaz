@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { TooltipComponent } from '../../../shared/ui/tooltip/tooltip.component';
+import { IconComponent } from '../../../shared/ui/icon/icon.component';
+import { IconName } from '../../../shared/ui/icon/icon.types';
+import { Component, HostListener, ElementRef, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -10,18 +12,49 @@ import { TooltipComponent } from '../../../shared/ui/tooltip/tooltip.component';
     RouterLink,
     RouterLinkActive,
     NgFor,
-    TooltipComponent
+    TooltipComponent,
+    IconComponent
   ],
   templateUrl: './navbar.component.html'
 })
+
 export class NavbarComponent {
 
-menuItems = [
-  { label: 'Home', route: '/', icon: 'assets/images/logo/home.svg' },
-  { label: 'Sobre', route: '/about', icon: 'assets/images/logo/about.svg' },
-  { label: 'Projetos', route: '/projects', icon: 'assets/images/logo/projects.svg' },
-  { label: 'Blog', route: '/blog', icon: 'assets/images/logo/blog.svg' },
-  { label: 'Contato', route: '/contact', icon: 'assets/images/logo/contact.svg' }
-];
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  
+  closeMenu() {
+    this.isMobileMenuOpen = false;
+    this.renderer.removeClass(document.body, 'overflow-hidden');
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    if (
+      this.isMobileMenuOpen &&
+      !this.elementRef.nativeElement.contains(event.target)
+    ) {
+      this.closeMenu();
+    }
+  }
+
+  isMobileMenuOpen = false;
+
+  toggleMobileMenu() {
+    this.isMobileMenuOpen = !this.isMobileMenuOpen;
+
+    if (this.isMobileMenuOpen) {
+      this.renderer.addClass(document.body, 'overflow-hidden');
+    } else {
+      this.renderer.removeClass(document.body, 'overflow-hidden');
+    }
+  }
+
+  menuItems: { label: string; route: string; icon: IconName }[] = [
+    { label: 'Home', route: '/', icon: 'home' },
+    { label: 'About', route: '/about', icon: 'about' },
+    { label: 'Projects', route: '/projects', icon: 'projects' },
+    { label: 'Contact', route: '/contact', icon: 'contact' },
+    { label: 'Blog', route: '/blog', icon: 'blog' },
+  ];
 
 }
