@@ -50,10 +50,10 @@ export class NavbarComponent {
   }
 
   menuItems: { label: string; route: string; icon: IconName }[] = [
-    { label: 'Home', route: '/', icon: 'home' },
-    { label: 'About', route: '/about', icon: 'about' },
-    { label: 'Projects', route: '/projects', icon: 'projects' },
-    { label: 'Contact', route: '/contact', icon: 'contact' },
+    { label: 'Início', route: '/', icon: 'home' },
+    { label: 'Sobre', route: '/about', icon: 'about' },
+    { label: 'Projetos', route: '/projects', icon: 'projects' },
+    { label: 'Contato', route: '/contact', icon: 'contact' },
     { label: 'Blog', route: '/blog', icon: 'blog' },
   ];
 

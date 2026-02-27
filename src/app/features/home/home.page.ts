@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-home-page',
   standalone: true,
-  template: `
-    <section>
-      <h1 class="text-3xl font-bold">Home</h1>
-    </section>
-  `
+  imports: [RouterLink],
+  templateUrl: './home.page.html'
 })
 export class HomePage {}
