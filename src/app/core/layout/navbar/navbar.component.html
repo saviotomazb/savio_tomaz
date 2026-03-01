@@ -1,17 +1,18 @@
-<nav class="w-full bg-white border-b border-zinc-200">
+<nav class="w-full bg-white border-b border-default">
+
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
-    <!-- Logotipo -->
+    <!-- LOGO -->
     <a routerLink="/" class="flex items-center">
-      <img 
+      <img
         src="assets/images/logo/logo_dark.svg"
         alt="Logo"
         class="h-8 w-auto"
       >
     </a>
 
-    <!-- Menu -->
-    <div class="hidden md:flex items-center gap-4 text-zinc-600">
+    <!-- DESKTOP MENU -->
+    <div class="hidden md:flex items-center gap-4 text-muted">
 
       <app-tooltip
         *ngFor="let item of menuItems"
@@ -19,13 +20,11 @@
       >
         <a
           [routerLink]="item.route"
-          routerLinkActive="text-black bg-zinc-100"
+          routerLinkActive="nav-link-active"
           [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-          class="group flex items-center justify-center w-10 h-10 rounded-lg
-                transition-colors duration-200
-                hover:bg-zinc-100"
+          class="group nav-link"
         >
-          <app-icon 
+          <app-icon
             [name]="item.icon"
             size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
           </app-icon>
@@ -34,26 +33,26 @@
 
     </div>
 
-    <!-- Botão Hambúrguer -->
+    <!-- HAMBURGER -->
     <button
       class="md:hidden relative w-10 h-10 flex items-center justify-center"
       (click)="toggleMobileMenu()"
     >
 
       <span
-        class="absolute w-6 h-0.5 bg-zinc-800 transition-all duration-300"
+        class="hamburger-line"
         [class.rotate-45]="isMobileMenuOpen"
         [class.translate-y-0]="isMobileMenuOpen"
         [class.-translate-y-2]="!isMobileMenuOpen">
       </span>
 
       <span
-        class="absolute w-6 h-0.5 bg-zinc-800 transition-all duration-300"
+        class="hamburger-line"
         [class.opacity-0]="isMobileMenuOpen">
       </span>
 
       <span
-        class="absolute w-6 h-0.5 bg-zinc-800 transition-all duration-300"
+        class="hamburger-line"
         [class.-rotate-45]="isMobileMenuOpen"
         [class.translate-y-0]="isMobileMenuOpen"
         [class.translate-y-2]="!isMobileMenuOpen">
@@ -63,15 +62,16 @@
 
   </div>
 
-  <!-- Menu Mobile -->
+  <!-- MOBILE MENU -->
   <div
-    class="md:hidden overflow-hidden transition-all duration-300 ease-in-out"
+    class="md:hidden overflow-hidden transition-all duration-300"
     [class.max-h-0]="!isMobileMenuOpen"
     [class.max-h-96]="isMobileMenuOpen"
   >
+
     <div
-      class="border-t border-zinc-200 bg-white px-6 py-4 flex flex-col gap-2
-            transition-all duration-300 ease-in-out"
+      class="border-t border-default bg-white px-6 py-4 flex flex-col gap-2
+             transition-all duration-300"
       [class.opacity-0]="!isMobileMenuOpen"
       [class.opacity-100]="isMobileMenuOpen"
       [class.-translate-y-2]="!isMobileMenuOpen"
@@ -81,24 +81,25 @@
       <a
         *ngFor="let item of menuItems"
         [routerLink]="item.route"
-        routerLinkActive="text-black bg-zinc-100"
-        [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+        routerLinkActive="nav-link-active"
         (click)="toggleMobileMenu()"
-        class="group flex items-center gap-3 px-4 py-2 rounded-lg
-              transition-colors duration-200
-              hover:bg-zinc-100"
+        class="group nav-mobile-link"
       >
-        <app-icon 
+
+        <app-icon
           [name]="item.icon"
           size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
         </app-icon>
 
-        <span class="transition-transform duration-200 group-hover:translate-x-1">
+        <span
+          class="transition-transform duration-200 group-hover:translate-x-1">
           {{ item.label }}
         </span>
+
       </a>
 
     </div>
+
   </div>
 
 </nav>

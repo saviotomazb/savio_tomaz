@@ -48,6 +48,15 @@ body {
     @apply border border-zinc-200;
   }
 
+  .eyebrow {
+  @apply text-base sm:text-lg lg:text-xl
+         font-mono font-medium
+         tracking-wider
+         text-zinc-500;
+  }
+
+  /*-- BUTTON --*/
+
   .btn {
     @apply px-6 py-3 rounded-lg
            transition-all duration-200
@@ -62,10 +71,59 @@ body {
     @apply border border-zinc-200 hover:bg-zinc-100;
   }
 
-  .eyebrow {
-    @apply text-base sm:text-lg lg:text-xl
-          font-mono font-medium
-          tracking-wider
-          text-zinc-500;
+  /*-- BUTTON ARROW --*/
+
+  .btn-with-arrow {
+    @apply inline-flex items-center gap-2;
+  }
+
+  .btn-with-arrow::after {
+    content: "";
+    width: 16px;
+    height: 16px;
+
+    background-color: currentColor;
+
+    transition: transform 0.2s ease;
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
+  .btn-with-arrow:hover::after {
+    transform: translateX(4px);
+  }
+
+  /*-- NAVBAR --*/
+
+  .nav-link {
+    @apply flex items-center justify-center
+           w-10 h-10
+           rounded-lg
+           transition-colors duration-200
+           hover:bg-zinc-100;
+  }
+
+  .nav-link-active {
+    @apply bg-zinc-100  text-zinc-900;
+  }
+
+  .nav-mobile-link {
+    @apply flex items-center gap-3
+           px-4 py-2
+           rounded-lg
+           transition-colors duration-200
+           hover:bg-zinc-100;
+  }
+
+  /*-- HAMBURGER --*/
+
+  .hamburger-line {
+    @apply absolute w-6 h-0.5
+           bg-zinc-800
+           transition-all duration-300;
   }
 }
