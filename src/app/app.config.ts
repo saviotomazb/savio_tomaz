@@ -14,7 +14,6 @@ export const appConfig: ApplicationConfig = {
       routes,
       withEnabledBlockingInitialNavigation()
     ),
-
     {
       provide: TitleStrategy,
       useClass: AppTitleStrategy
