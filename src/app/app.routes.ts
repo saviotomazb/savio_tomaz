@@ -47,7 +47,9 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: '',
-    pathMatch: 'full'
+    loadComponent: () =>
+      import('./features/not-found/not-found.page')
+        .then(m => m.NotFoundPage),
+    title: '404 - Página não encontrada'
   }
 ];
