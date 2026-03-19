@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-contact',
@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
     <section>
       <h1 class="text-3xl font-bold">Contact</h1>
     </section>
-  `
+  `,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ContactPage {}
+export class ContactPageComponent {}

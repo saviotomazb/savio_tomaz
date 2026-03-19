@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
   standalone: true,
-  templateUrl: './loading.component.html'
+  templateUrl: './loading.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoadingComponent {}

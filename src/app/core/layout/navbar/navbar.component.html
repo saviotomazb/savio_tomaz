@@ -14,22 +14,21 @@
     <!-- DESKTOP MENU -->
     <div class="hidden md:flex items-center gap-4 text-muted">
 
-      <app-tooltip
-        *ngFor="let item of menuItems"
-        [text]="item.label"
-      >
-        <a
-          [routerLink]="item.route"
-          routerLinkActive="nav-link-active"
-          [routerLinkActiveOptions]="{ exact: item.route === '/' }"
-          class="group nav-link"
-        >
-          <app-icon
-            [name]="item.icon"
-            size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
-          </app-icon>
-        </a>
-      </app-tooltip>
+      @for (item of menuItems; track item.route) {
+              <app-tooltip [text]="item.label">
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="nav-link-active"
+                  [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+                  class="group nav-link"
+                >
+                  <app-icon
+                    [name]="item.icon"
+                    size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
+                  </app-icon>
+                </a>
+              </app-tooltip>
+            }
 
     </div>
 
@@ -78,25 +77,26 @@
       [class.translate-y-0]="isMobileMenuOpen"
     >
 
-      <a
-        *ngFor="let item of menuItems"
-        [routerLink]="item.route"
-        routerLinkActive="nav-link-active"
-        (click)="toggleMobileMenu()"
-        class="group nav-mobile-link"
-      >
+      @for (item of menuItems; track item.route) {
+        <a
+          [routerLink]="item.route"
+          routerLinkActive="nav-link-active"
+          (click)="toggleMobileMenu()"
+          class="group nav-mobile-link"
+        >
 
-        <app-icon
-          [name]="item.icon"
-          size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
-        </app-icon>
+          <app-icon
+            [name]="item.icon"
+            size="w-5 h-5 transition-transform duration-200 group-hover:scale-110">
+          </app-icon>
 
-        <span
-          class="transition-transform duration-200 group-hover:translate-x-1">
-          {{ item.label }}
-        </span>
+          <span
+            class="transition-transform duration-200 group-hover:translate-x-1">
+            {{ item.label }}
+          </span>
 
-      </a>
+        </a>
+      }
 
     </div>
 

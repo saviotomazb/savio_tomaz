@@ -1,8 +1,8 @@
 import { bootstrapApplication } from '@angular/platform-browser';
 import { appConfig } from './app/app.config';
-import { App } from './app/app';
+import { AppComponent } from './app/app';
 
-bootstrapApplication(App, appConfig)
+bootstrapApplication(AppComponent, appConfig)
   .then(() => {
     const splash = document.getElementById('app-splash');
 
@@ -14,4 +14,4 @@ bootstrapApplication(App, appConfig)
 
     setTimeout(() => splash?.remove(), 500);
   })
-  .catch((err) => console.error(err));
+  .catch(() => void 0);

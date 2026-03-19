@@ -1,16 +1,15 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { TitleStrategy, RouterStateSnapshot } from '@angular/router';
+import type { RouterStateSnapshot } from '@angular/router';
+import { TitleStrategy } from '@angular/router';
 
 @Injectable()
 export class AppTitleStrategy extends TitleStrategy {
 
+  private readonly title = inject(Title);
+
   private readonly baseTitle = 'Sávio Tomaz';
   private readonly defaultSection = 'Desenvolvedor';
-
-  constructor(private title: Title) {
-    super();
-  }
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
 

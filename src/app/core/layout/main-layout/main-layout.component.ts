@@ -1,12 +1,12 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, ChangeDetectorRef, inject, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   RouterOutlet,
-  Router,
   NavigationStart,
   NavigationEnd,
   NavigationCancel,
-  NavigationError
+  NavigationError,
+  Router
 } from '@angular/router';
 
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -17,7 +17,8 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
   selector: 'app-main-layout',
   standalone: true,
   imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, LoadingComponent],
-  templateUrl: './main-layout.component.html'
+  templateUrl: './main-layout.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class MainLayoutComponent {
 
@@ -25,7 +26,10 @@ export class MainLayoutComponent {
   private navigationStartTime = Date.now();
   private minLoadingTime = 700;
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef) {
+  private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
+
+  constructor() {
 
     this.router.events.subscribe(event => {
 

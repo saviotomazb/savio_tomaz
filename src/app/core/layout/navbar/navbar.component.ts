@@ -1,9 +1,8 @@
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { NgFor } from '@angular/common';
 import { TooltipComponent } from '../../../shared/ui/tooltip/tooltip.component';
 import { IconComponent } from '../../../shared/ui/icon/icon.component';
-import { IconName } from '../../../shared/ui/icon/icon.types';
-import { Component, HostListener, ElementRef, Renderer2 } from '@angular/core';
+import type { IconName } from '../../../shared/ui/icon/icon.types';
+import { Component, HostListener, ChangeDetectionStrategy, ElementRef, Renderer2, inject } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -11,16 +10,17 @@ import { Component, HostListener, ElementRef, Renderer2 } from '@angular/core';
   imports: [
     RouterLink,
     RouterLinkActive,
-    NgFor,
     TooltipComponent,
     IconComponent
   ],
-  templateUrl: './navbar.component.html'
+  templateUrl: './navbar.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 
 export class NavbarComponent {
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  private elementRef = inject<ElementRef>(ElementRef);
+  private renderer = inject(Renderer2);
   
   closeMenu() {
     this.isMobileMenuOpen = false;
