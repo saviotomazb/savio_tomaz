@@ -23,8 +23,6 @@ import { LoadingComponent } from '../../../shared/components/loading/loading.com
 export class MainLayoutComponent {
 
   loading = true;
-  private navigationStartTime = Date.now();
-  private minLoadingTime = 700;
 
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
@@ -35,8 +33,8 @@ export class MainLayoutComponent {
 
       if (event instanceof NavigationStart) {
 
-        this.navigationStartTime = Date.now();
         this.loading = true;
+        this.cdr.detectChanges();
 
       }
 
@@ -46,18 +44,8 @@ export class MainLayoutComponent {
         event instanceof NavigationError
       ) {
 
-        const elapsed = Date.now() - this.navigationStartTime;
-        const remaining = this.minLoadingTime - elapsed;
-
-        if (remaining > 0) {
-          setTimeout(() => {
-            this.loading = false;
-            this.cdr.detectChanges();
-          }, remaining);
-        } else {
-          this.loading = false;
-          this.cdr.detectChanges();
-        }
+        this.loading = false;
+        this.cdr.detectChanges();
 
       }
 
