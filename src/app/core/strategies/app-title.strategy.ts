@@ -9,15 +9,15 @@ export class AppTitleStrategy extends TitleStrategy {
   private readonly title = inject(Title);
 
   private readonly baseTitle = 'Sávio Tomaz';
-  private readonly defaultSection = 'Desenvolvedor';
+  private readonly defaultSection = 'Desenvolvedor .NET';
 
   override updateTitle(snapshot: RouterStateSnapshot): void {
 
     const routeTitle = this.buildTitle(snapshot);
 
     const finalTitle = routeTitle
-      ? `${this.baseTitle} | ${routeTitle}`
-      : `${this.baseTitle} | ${this.defaultSection}`;
+      ? `${this.baseTitle} - ${routeTitle}`
+      : `${this.baseTitle} - ${this.defaultSection}`;
 
     this.title.setTitle(finalTitle);
   }

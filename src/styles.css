@@ -97,6 +97,28 @@ body {
     transform: translateX(4px);
   }
 
+  /* -- CARD ARROW --*/
+
+  .card-arrow {
+    @apply w-10 h-10 shrink-0 rounded-lg bg-zinc-100
+          flex items-center justify-center;
+  }
+
+  .card-arrow::before {
+    content: "";
+
+    width: 16px;
+    height: 16px;
+
+    background-color: currentColor;
+
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M5 12h14M13 6l6 6-6 6'/%3E%3C/svg%3E");
+
+    mask-repeat: no-repeat;
+    mask-position: center;
+    mask-size: contain;
+  }
+
   /*-- NAVBAR --*/
 
   .nav-link {

@@ -13,7 +13,7 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/home/home.page')
             .then(m => m.HomePageComponent),
-        title: 'Desenvolvedor'
+        title: 'Desenvolvedor .NET'
       },
       {
         path: 'projects',
