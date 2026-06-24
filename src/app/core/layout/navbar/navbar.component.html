@@ -81,6 +81,7 @@
         <a
           [routerLink]="item.route"
           routerLinkActive="nav-link-active"
+          [routerLinkActiveOptions]="{ exact: item.route === '/' }"
           (click)="toggleMobileMenu()"
           class="group nav-mobile-link"
         >

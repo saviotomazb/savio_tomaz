@@ -38,8 +38,20 @@ export class MainLayoutComponent {
 
       }
 
+      if (event instanceof NavigationEnd) {
+
+        this.loading = false;
+
+        window.scrollTo({
+          top: 0,
+          behavior: 'auto'
+        });
+
+        this.cdr.detectChanges();
+
+      }
+
       if (
-        event instanceof NavigationEnd ||
         event instanceof NavigationCancel ||
         event instanceof NavigationError
       ) {
