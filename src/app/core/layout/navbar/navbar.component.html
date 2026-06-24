@@ -1,4 +1,4 @@
-<nav class="w-full bg-white border-b border-default">
+<nav class="fixed top-0 left-0 right-0 z-40 bg-white border-b border-default">
 
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
@@ -63,7 +63,7 @@
 
   <!-- MOBILE MENU -->
   <div
-    class="md:hidden overflow-hidden transition-all duration-300"
+    class="md:hidden overflow-hidden transition-all duration-300 relative z-40"
     [class.max-h-0]="!isMobileMenuOpen"
     [class.max-h-96]="isMobileMenuOpen"
   >
@@ -103,3 +103,13 @@
   </div>
 
 </nav>
+
+@if (isMobileMenuOpen) {
+  <button
+    type="button"
+    aria-label="Fechar menu"
+    class="fixed inset-0 z-30 md:hidden
+           bg-white/5 backdrop-blur-xs"
+    (click)="closeMenu()"
+  ></button>
+}
