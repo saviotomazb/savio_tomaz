@@ -6,7 +6,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [RouterLink],
   template: `
-    <section class="min-h-[calc(100vh-theme(spacing.20))] flex items-center">
+    <section class="py-10 md:min-h-[75vh] md:flex md:items-center">
 
       <div
         class="w-full
