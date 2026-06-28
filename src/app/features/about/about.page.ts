@@ -10,8 +10,10 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="order-2 lg:order-1">
           <div class="relative max-w-md mx-auto lg:mx-0">
             <img
-              src="assets/images/profile/Formatura.png"
+              src="assets/images/profile/formatura.webp"
               alt="Foto de Sávio Tomaz em sua formatura"
+              width="600"
+              height="750"
               class="aspect-[4/5] w-full object-cover rounded-2xl border-default shadow-sm"
             >
           </div>

@@ -52,8 +52,12 @@ import { RouterLink } from '@angular/router';
         <div class="order-1 md:order-2 flex justify-start md:justify-center lg:justify-end">
 
           <img
-            src="assets/images/profile/Perfil.png"
+            src="assets/images/profile/perfil.webp"
             alt="Sávio Tomaz"
+            width="1000"
+            height="1000"
+            fetchpriority="high"
+            decoding="async"
             class="w-64 h-64 sm:w-72 sm:h-72 lg:w-96 lg:h-96 xl:w-110 xl:h-110
                   object-cover rounded-2xl
                   border-default shadow-sm"

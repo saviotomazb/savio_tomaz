@@ -3,10 +3,12 @@
   <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
 
     <!-- LOGO -->
-    <a routerLink="/" class="flex items-center">
+    <a routerLink="/" aria-label="Ir para a página inicial" class="flex items-center">
       <img
         src="assets/images/logo/logo_dark.svg"
         alt="Logo"
+        width="32"
+        height="32"
         class="h-8 w-auto"
       >
     </a>
@@ -20,6 +22,7 @@
                   [routerLink]="item.route"
                   routerLinkActive="nav-link-active"
                   [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+                  [attr.aria-label]="item.label"
                   class="group nav-link"
                 >
                   <app-icon

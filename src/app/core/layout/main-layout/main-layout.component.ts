@@ -6,17 +6,26 @@ import {
   NavigationEnd,
   NavigationCancel,
   NavigationError,
-  Router
+  Router,
+  ActivatedRoute
 } from '@angular/router';
 
 import { NavbarComponent } from '../navbar/navbar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { LoadingComponent } from '../../../shared/components/loading/loading.component';
+import { SeoService } from '../../services/seo.service';
+import type { SeoData } from '../../models/seo-data.model';
 
 @Component({
   selector: 'app-main-layout',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, NavbarComponent, FooterComponent, LoadingComponent],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    NavbarComponent,
+    FooterComponent,
+    LoadingComponent
+  ],
   templateUrl: './main-layout.component.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -24,8 +33,10 @@ export class MainLayoutComponent {
 
   loading = true;
 
-  private router = inject(Router);
-  private cdr = inject(ChangeDetectorRef);
+  private readonly router = inject(Router);
+  private readonly activatedRoute = inject(ActivatedRoute);
+  private readonly seoService = inject(SeoService);
+  private readonly cdr = inject(ChangeDetectorRef);
 
   constructor() {
 
@@ -47,6 +58,8 @@ export class MainLayoutComponent {
           behavior: 'auto'
         });
 
+        this.updateSeo();
+
         this.cdr.detectChanges();
 
       }
@@ -62,6 +75,22 @@ export class MainLayoutComponent {
       }
 
     });
+
+  }
+
+  private updateSeo(): void {
+
+    let route = this.activatedRoute;
+
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    const seo = route.snapshot.data['seo'] as SeoData | undefined;
+
+    if (seo) {
+      this.seoService.update(seo);
+    }
 
   }
 
