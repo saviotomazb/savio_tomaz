@@ -16,11 +16,11 @@ O projeto ainda está em desenvolvimento. As próximas atualizações serão vol
 - [x] Layout principal com navbar e footer
 - [x] Página inicial do portfólio
 - [x] Rotas principais da aplicação
-- [ ] Página de projetos com cards e detalhes
-- [ ] Página sobre com experiência e habilidades
-- [ ] Página de contato com links profissionais
-- [ ] Conteúdos para a área de blog
-- [ ] Melhorias de acessibilidade e SEO
+- [x] Página de projetos com cards e detalhes
+- [x] Página sobre com experiência e habilidades
+- [x] Página de contato com links profissionais
+- [ ] Conteúdos para a área de blog (em breve)
+- [x] Melhorias de acessibilidade e SEO
 
 ## Tecnologias
 
