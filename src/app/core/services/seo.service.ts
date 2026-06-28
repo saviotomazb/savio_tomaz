@@ -13,7 +13,24 @@ export class SeoService {
   private readonly document = inject(DOCUMENT);
 
   private readonly siteName = 'Sávio Tomaz';
-  private readonly baseUrl = 'https://SEU-DOMINIO.com';
+  private readonly baseUrl = 'https://saviotomaz.vercel.app';
+    
+  private readonly jobTitle = 'Desenvolvedor .NET';
+
+  private readonly knowsAbout = [
+  '.NET',
+  'ASP.NET Core',
+  'Angular',
+  'TypeScript',
+  'SQL Server',
+  'Docker',
+  'Arquitetura de Software'
+  ];
+
+  private readonly socialLinks = [
+  'https://github.com/saviotomazb',
+  'https://www.linkedin.com/in/saviotomazb'
+  ];
 
   update(seo: SeoData): void {
 
@@ -22,13 +39,14 @@ export class SeoService {
     this.updateCanonical(seo.canonical);
     this.updateOpenGraph(seo);
     this.updateTwitter(seo);
+    this.updateSchema(seo);
 
   }
 
   private updateDescription(description?: string): void {
 
     if (!description) {
-        return;
+      return;
     }
       
     this.meta.updateTag({
@@ -50,7 +68,7 @@ export class SeoService {
   private updateCanonical(canonical?: string): void {
 
     if (!canonical) {
-        return;
+      return;
     } 
 
     const href = `${this.baseUrl}${canonical}`;
@@ -134,5 +152,45 @@ export class SeoService {
     });
 
   }
+    
+  private updateSchema(seo: SeoData): void {
+
+    const existing = this.document.getElementById('schema-org');
+
+    if (existing) {
+        existing.remove();
+    }
+
+    const script = this.document.createElement('script');
+
+    script.id = 'schema-org';
+    script.type = 'application/ld+json';
+
+    const schema: Record<string, unknown> = {
+        '@context': 'https://schema.org',
+        '@type': 'Person',
+
+        name: this.siteName,
+        
+        jobTitle: this.jobTitle,
+
+        url: this.baseUrl,
+
+        description: seo.description,
+
+        knowsAbout: this.knowsAbout,
+
+        sameAs: this.socialLinks
+    };
+
+    if (seo.image) {
+        schema['image'] = `${this.baseUrl}${seo.image}`;
+    }
+
+    script.text = JSON.stringify(schema);
+
+    this.document.head.appendChild(script);
+
+    }
 
 }

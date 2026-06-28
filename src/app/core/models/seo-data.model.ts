@@ -5,4 +5,6 @@ export interface SeoData {
   canonical?: string;
   robots?: string;
   type?: 'website' | 'article';
+    
+  schemaType?: 'Person';
 }

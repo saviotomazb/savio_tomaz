@@ -6,7 +6,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   template: `
     <div
       class="fixed inset-0 flex flex-col items-center justify-center
-             bg-white/80 backdrop-blur-sm z-[9999]
+             bg-white/80 backdrop-blur-sm z-9999
              transition-opacity duration-300"
     >
 
