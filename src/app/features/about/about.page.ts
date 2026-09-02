@@ -8,7 +8,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
       <div class="grid lg:grid-cols-[0.9fr_1.1fr] gap-10 lg:gap-16 items-center">
 
         <div class="order-2 lg:order-1">
-          <div class="relative max-w-md mx-auto lg:mx-0">
+          <div class="relative max-w-md mx-0">
             <img
               src="assets/images/profile/formatura.webp"
               alt="Foto de Sávio Tomaz em sua formatura"
