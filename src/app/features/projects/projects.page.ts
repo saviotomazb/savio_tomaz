@@ -35,7 +35,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
         <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
           @for (project of projects; track project.title) {
             <article
-              class="group border-default rounded-lg p-6 flex flex-col min-h-[360px]
+              class="group border-default rounded-lg p-6 flex flex-col min-h-90
                      transition-all duration-200 hover:-translate-y-1 hover:shadow-sm"
             >
               <div class="flex items-start justify-between gap-4 mb-8">
@@ -81,7 +81,11 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
                 </a>
 
                 <a
-                  [href]="project.repositoryUrl"
+                  [href]="project.repositoryUrl || null"
+                  [class.opacity-50]="!project.repositoryUrl"
+                  [class.cursor-not-allowed]="!project.repositoryUrl"
+                  [class.pointer-events-none]="!project.repositoryUrl"
+                  [attr.aria-disabled]="!project.repositoryUrl"
                   class="btn btn-outline btn-with-arrow"
                   target="_blank"
                   rel="noreferrer"
@@ -111,7 +115,7 @@ export class ProjectsPageComponent {
   protected readonly projects = [
     {
       title: 'Momentum',
-      category: 'Full Stack',
+      category: 'Gestão de Hábitos',
       status: 'Em desenvolvimento',
       description:
         'Sistema para gerenciamento de hábitos e acompanhamento de desempenho pessoal, construído com foco em arquitetura limpa e escalabilidade.',
@@ -121,13 +125,31 @@ export class ProjectsPageComponent {
     },
     {
       title: 'myProducts',
-      category: 'Full Stack',
+      category: 'Gestão de Produtos',
       status: 'Em desenvolvimento',
       description:
         'Aplicação para gestão de produtos e geração de orçamentos, permitindo o controle de clientes e categorias.',
       technologies: ['ASP.NET Core', 'Razor Pages', 'Entity Framework Core', 'SQL Server', 'JWT'],
       previewUrl: '#',
       repositoryUrl: 'https://github.com/saviotomazb/my_products'
-    }
+    },
+    {
+    title: 'MV Knowledge',
+    category: 'Documentação Técnica',
+    status: 'Concluído',
+    description:
+      'Plataforma para centralização, pesquisa, documentação e versionamento de objetos Oracle. Conta com mais de 1.000 objetos catalogados, sincronização automática, histórico de versões, comparação de alterações e geração de resumos técnicos com IA.',
+    technologies: [
+      'Angular 16',
+      'C#',
+      'ASP.NET Core',
+      '.NET 10',
+      'Entity Framework Core',
+      'PostgreSQL 17',
+      'Clean Architecture'
+    ],
+    previewUrl: 'https://drive.google.com/file/d/1yTeFIo_pKTf_eYzz2bB8JmCrUvKHfFT3/view?usp=sharing',
+    repositoryUrl: null
+  }
   ];
 }
